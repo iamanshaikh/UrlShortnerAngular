@@ -1,0 +1,65 @@
+<div class="contanier">
+<div class="row">
+<h4 class="text-center text-primary m-3">Short Url</h4> 
+</div>
+
+<div class="row shadow mt-3">
+<div class="card">
+    <div class="card-body">
+        <div class="input-group mb-1 mt-1">
+            <input type="text" class="form-control" placeholder="Enter Url" [(ngModel)]="url" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button class="btn btn-outline-primary" (click)="generateShortUrl()" type="button" id="button-addon2">Generate</button>
+          </div>
+    </div>
+  </div>
+</div>
+            <div class="row mt-3 shadow" *ngIf="isUrl || isError">
+    <div class="card">
+<div class="card-body">
+   <div *ngIf="isError">
+    <div class="alert alert-danger" role="alert">
+     Please Enter Valid Url
+    </div>
+   </div>
+
+   <!-- <div *ngIf="isDuplicate">
+    <div class="alert alert-danger" role="alert">
+      Url Already Exits Please Try After 5 min
+    </div>
+   </div> -->
+   
+   <div *ngIf="isUrl">
+    <h4> Short Url : <a href="{{originalUrl}}" target="_blank">http://localhost:8080/shortner/{{shortUrl}}</a></h4>
+    
+   </div>
+</div>
+
+</div>
+</div>
+
+
+<div class="row shadow mt-3">
+  <div class="card">
+      <div class="card-body">
+          <div class="input-group mb-1 mt-1">
+              <input type="text" class="form-control" placeholder="Paste Your Shortner Url here" [(ngModel)]="inputurl" aria-label="Recipient's username" aria-describedby="button-addon2">
+              <button class="btn btn-outline-primary" (click)="redirectToOriginal()" type="button" id="button-addon2">Validate</button>
+            </div>
+      </div>
+    </div>
+  </div>
+  <div class="row shadow mt-3" *ngIf="nullUrl">
+    <div class="card">
+     <div class="alert alert-danger" role="alert">
+      Url does not exists
+    </div>
+    </div>
+  </div>
+  <div class="row shadow mt-3" *ngIf="expiredUrl">
+    <div class="card">
+     <div class="alert alert-danger" role="alert">
+      Url Is Expired 
+    </div>
+    </div>
+  </div>
+</div>
